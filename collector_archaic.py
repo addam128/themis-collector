@@ -31,9 +31,9 @@ class Collector:
 
         proc = subprocess.run(["ldd", self._path], stdout=PIPE)
         for line in map(lambda l: l.decode('ascii'), proc.stdout.split(b'\n')):
-            print(line)
             ma = PATH_REGEX.match(line)
-            self._deps.append(ma.group("path"))
+            if ma is not None:
+                self._deps.append(ma.group("path"))
 
         return self
 
