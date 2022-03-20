@@ -22,6 +22,7 @@ class Collector:
         self._resultdir = resultdir
         self._name = name
         self._deps = list()
+        self._deps.append(path)
 
 
 
