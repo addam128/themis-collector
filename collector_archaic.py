@@ -49,7 +49,7 @@ class Collector:
                 if dep is None or dep == "None":
                     continue
                 try:
-                    zf.write(dep)
+                    zf.write(dep, arcname=dep.split("/")[-1])
                 except:
                     pass
 
