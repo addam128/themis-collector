@@ -8,7 +8,7 @@ from zipfile import ZipFile
 from argparse import ArgumentParser
 
 
-PATH_REGEX = re.compile(r".*=>(?P<path> [^\(]*).*")
+PATH_REGEX = re.compile(r".*=>\s*(?P<path>[^\(]*).*")
 
 class Collector:
     def __init__(
@@ -30,8 +30,8 @@ class Collector:
     ) -> 'Collector':
 
         proc = subprocess.run(["ldd", self._path], stdout=PIPE)
-        for line in proc.stdout:
-            ma = PATH_REGEX.match(line)
+        for line in proc.stdout.split(b'\n'):
+            ma = PATH_REGEX.match(str(line))
             self._deps.append(ma.group("path"))
 
         return self
