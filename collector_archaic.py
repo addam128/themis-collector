@@ -30,8 +30,9 @@ class Collector:
     ) -> 'Collector':
 
         proc = subprocess.run(["ldd", self._path], stdout=PIPE)
-        for line in proc.stdout.split(b'\n'):
-            ma = PATH_REGEX.match(line.decode('ascii'))
+        for line in map(lambda l: l.decode('ascii'), proc.stdout.split(b'\n')):
+            print(line)
+            ma = PATH_REGEX.match(line)
             self._deps.append(ma.group("path"))
 
         return self
