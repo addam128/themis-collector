@@ -28,7 +28,7 @@ class Collector:
         self
     ) -> 'Collector':
 
-        proc = subprocess.run(["ldd", self._path], text=True)
+        proc = subprocess.run(["ldd", self._path])
         for line in proc.stdout:
             ma = PATH_REGEX.match(line)
             self._deps.append(ma.group("path"))
