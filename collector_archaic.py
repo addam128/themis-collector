@@ -8,7 +8,7 @@ from zipfile import ZipFile
 from argparse import ArgumentParser
 
 
-PATH_REGEX = re.compile(r".*=>\s*(?P<path>[^\(]*).*")
+PATH_REGEX = re.compile(r".*=>\s*(?P<path>[^\(\s]*).*")
 
 class Collector:
     def __init__(
