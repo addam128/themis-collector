@@ -48,8 +48,10 @@ class Collector:
             for dep in self._deps:
                 if dep is None or dep == "None":
                     continue
-                zf.write(dep)
-    
+                try:
+                    zf.write(dep)
+                except:
+                    pass
 
 
 def parse_args():
