@@ -44,7 +44,7 @@ class Collector:
         self
     ) -> None:
 
-        with ZipFile("{}/{}_{}.zip".format(self._resultdir, self._name, uuid.uudi4()), mode='x') as zf:
+        with ZipFile("{}/{}_{}.zip".format(self._resultdir, self._name, uuid.uuid4()), mode='x') as zf:
             for dep in self._deps:
                 if dep is None or dep == "None":
                     continue
