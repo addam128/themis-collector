@@ -1,3 +1,4 @@
+from asyncio.subprocess import PIPE
 import uuid
 import subprocess
 import re
@@ -28,7 +29,7 @@ class Collector:
         self
     ) -> 'Collector':
 
-        proc = subprocess.run(["ldd", self._path])
+        proc = subprocess.run(["ldd", self._path], stdout=PIPE)
         for line in proc.stdout:
             ma = PATH_REGEX.match(line)
             self._deps.append(ma.group("path"))
